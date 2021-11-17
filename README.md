@@ -27,18 +27,17 @@ Poetry will always work isolated from the global Python installation. To achieve
 
 However, for various reasons, this Python version might not be compatible with the python required for the project. To ensure that this does not happen we will use pyenv to activate a specific python version. 
 
-Install the pyenv dependencies (for Ubuntu 18.06)
-
+Install the pyenv dependencies:
 
 `sudo apt-get update; sudo apt-get install make build-essential libssl-dev zlib1g-dev \`
 `libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \`
 `libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev`
 
-Get pyenv installer
+Get pyenv installer:
 
 `curl https://pyenv.run | bash`
 
-Optionally, add `pyenv` to path by adding the following to the ~/.bashrc file
+Optionally, add `pyenv` to path by adding the following to the ~/.bashrc file:
 
 `export PATH="$HOME/.pyenv/bin:$PATH"`
 
@@ -50,13 +49,7 @@ Then, to install the specific `python` version (we will install `python 3.8.7`) 
 
 `pyenv install 3.8.7`
 
-Clone repo
-
-`git clone https://github.com/joaoguerreiro779/coachhub_challenge.git`
-
-`cd coachhub_challenge`
-
-Activate pyenv for the project
+Activate pyenv on the project's home directory:
 
 `pyenv local 3.8.7`
 
