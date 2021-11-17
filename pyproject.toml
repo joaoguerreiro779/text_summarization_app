@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "coachhub_challenge"
+name = "text_summarization_app"
 version = "0.1.0"
-description = "Technical challenge for the Machine Learning Engineer position at Coach Hub"
+description = "Containarized text summarization application"
 authors = ["Joao Guerreiro <joaoguerreiro779@gmail.com>"]
 
 [tool.poetry.dependencies]
