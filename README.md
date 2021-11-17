@@ -23,11 +23,7 @@ To start, clone this repo:
 
 `git clone https://github.com/joaoguerreiro779/coachhub_challenge.git`
 
-Poetry will always work isolated from the global Python installation. To achieve this, it will first check if it’s currently running inside a virtual environment. If it is, it will use it directly without creating a new one. But if it’s not, it will use one that it has already created or create a brand new one for you. By default, Poetry will try to use the currently activated Python version to create the virtual environment for the current project.
-
-However, for various reasons, this Python version might not be compatible with the python required for the project. To ensure that this does not happen we will use pyenv to activate a specific python version. 
-
-Install the pyenv dependencies:
+Make sure you have the necessary dependencies for pyenv:
 
 `sudo apt-get update; sudo apt-get install make build-essential libssl-dev zlib1g-dev \`
 `libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \`
@@ -53,11 +49,13 @@ Activate pyenv on the project's home directory:
 
 `pyenv local 3.8.7`
 
-Download and install poetry
+Download and install poetry:
 
 `curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -`
 
 `poetry install`
+
+Note: Poetry will always work isolated from the global Python installation. To achieve this, it will first check if it’s currently running inside a virtual environment. If it is, it will use it directly without creating a new one. 
 
 ## **Building the server with Docker**
 
