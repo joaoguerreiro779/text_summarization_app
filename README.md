@@ -12,7 +12,7 @@ The stack used for this project was:
  - [Windows 10 host machine]
  - [Windows Subsystem for Linux 2](https://docs.microsoft.com/en-us/windows/wsl/install)
  - [Docker Desktop](https://www.docker.com/products/docker-desktop)
- - [Ubuntu 18.06](https://www.microsoft.com/store/productId/9N9TNGVNDL3Q)
+ - [Ubuntu 20.06](https://www.microsoft.com/store/productId/9N9TNGVNDL3Q)
  - [Pyenv (Python 3.8.7)](https://pypi.org/project/pyenv/)
  - [Poetry](https://python-poetry.org/)
 
@@ -27,7 +27,7 @@ Poetry will always work isolated from the global Python installation. To achieve
 
 However, for various reasons, this Python version might not be compatible with the python required for the project. To ensure that this does not happen we will use pyenv to activate a specific python version. 
 
-Install the pyenv dependencies (for Ubuntu 18.06)
+Install the pyenv dependencies (for Ubuntu 20.06)
 
 
 `sudo apt-get update; sudo apt-get install make build-essential libssl-dev zlib1g-dev \`
