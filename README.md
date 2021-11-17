@@ -1,37 +1,72 @@
-<h1 align="center">Machine Learning Engineer Take Home Assignment</h1>
+# Coach Hub Interview Challenge
+Repository for the technical assignment for Coach Hub
+
+**Contents**:
+1. [Development Environment](#development-environment)
+2. [Building the server with docker](#building-the-server-with-docker)
+
+## **Development Environment**
+
+In order to run through all the steps of this README you must make sure you have `Docker` working on your machine. 
+The stack used for this project was:
+ - [Windows 10 host machine]
+ - [Windows Subsystem for Linux 2](https://docs.microsoft.com/en-us/windows/wsl/install)
+ - [Docker Desktop](https://www.docker.com/products/docker-desktop)
+ - [Ubuntu 18.06](https://www.microsoft.com/store/productId/9N9TNGVNDL3Q)
+ - [Pyenv (Python 3.8.7)](https://pypi.org/project/pyenv/)
+ - [Poetry](https://python-poetry.org/)
 
 
-# Challenge
-In this task, you'll be working in an imaginary team setup.  
+You don't need to have this exact stack, however you do need to have a linux machine, docker and preferably a virtual environment.
 
-Your colleague Alice found out [this text summarizing model](https://huggingface.co/facebook/bart-large-cnn) helps our customer relations team to understand massive amount of requests.  
-You can find what she worked on so far in `ml_task/services/summarizer.py` and `notebooks/playground.ipynb`.  
-She uses `poetry` as a package manager.  
+To start, clone this repo:
 
-Now it's yoru turn to shine. Alice asked you to productionize her findings.  
-It's OK to upgrade her codebase if necessary.
+`git clone https://github.com/joaoguerreiro779/coachhub_challenge.git`
 
-## Task 1
-Please build a Docker based API that summarizes an input text only if the input is English.  
-An expected output is in a JSON format that looks like
-```
-{"summary": "Summarized text"}
-```
+Poetry will always work isolated from the global Python installation. To achieve this, it will first check if it’s currently running inside a virtual environment. If it is, it will use it directly without creating a new one. But if it’s not, it will use one that it has already created or create a brand new one for you. By default, Poetry will try to use the currently activated Python version to create the virtual environment for the current project.
 
-## Task 2
-Please set up a CICD pipeline using Github Actions that does
-- Any tasks that you think are necessary to keep this service healthy and maitainable (a.k.a production ready)
-- The last steps of the pipeline are to spin up the service, make some sample requests and then shut down the service (No need to deploy the service)
+However, for various reasons, this Python version might not be compatible with the python required for the project. To ensure that this does not happen we will use pyenv to activate a specific python version. 
 
-## Task 3
-Please provide a documentation by updating this README.md about what you think important regarding your works in Task 1 & 2.
+Install the pyenv dependencies (for Ubuntu 18.06) 
+`sudo apt-get update; sudo apt-get install make build-essential libssl-dev zlib1g-dev \`
+`libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \`
+`libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev`
 
-# Submission
-Please create a `private` github repo that contains this folder and share with these users
-- `yuki-ch`
-- `blabla`
-- `blabla`
-- `blabla`
+Get pyenv installer
+`curl https://pyenv.run | bash`
 
-So that we can see your commits, Github Actions or any activities you like to demonstrate!
-Good luck!
+Optionally, add `pyenv` to path by adding the following to the ~/.bashrc file 
+`export PATH="$HOME/.pyenv/bin:$PATH"`
+`export PATH="$PYENV_ROOT/bin:$PATH"`
+
+`eval "$(pyenv init --path)"`
+
+Then, to install the specific `python` version (we will install `python 3.8.7`) run:
+
+`pyenv install 3.8.7`
+
+Clone repo
+
+`git clone `
+
+`cd coachhub_challenge`
+
+Activate pyenv for the project
+
+`pyenv local 3.8.7`
+
+Download and install poetry
+
+`curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -`
+
+`poetry install`
+
+## **Building the server with Docker**
+
+To build the server with docker, navigate to the server directory and build the docker image with:
+
+`docker build -t coachhub_challenge_server .`
+
+Then run this image on a container exposing host port 5000 to container port 3000
+
+`docker run -p 5000:3000 coachhub_challenge_server`
