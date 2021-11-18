@@ -1,0 +1,19 @@
+name: Pipeline
+
+on: [push]
+env:
+  APPLICATION_NAME: text_summarization_app
+  SERVER_NAME: text_summarization_server
+jobs:
+  build_image:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build and tag image
+      run: docker build -t "${{ secrets.DOCKER_HUB_USERNAME}}/${{ env.SERVER_NAME }}:latest" .
+    - name: Spin up the service
+      run: docker run -d -p 5000:3000 "${{ secrets.DOCKER_HUB_USERNAME}}/${{ env.SERVER_NAME }}:latest"
+    - name: Run api tests
+      run: pytest -v -s -k api_test.py
+    - name: Run sample script
+      run: python run_samples.py
