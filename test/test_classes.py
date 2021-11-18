@@ -1,7 +1,7 @@
 from unittest import mock
 import os
 import pytest
-from exceptions import ModelConfigLoadError, TokenizerConfigLoadError, InvalidModelError
+from services.exceptions import ModelConfigLoadError, TokenizerConfigLoadError, InvalidModelError
 from services.summarizer import Summarizer
 from services.language_identifier import LanguageIdentifier
 
