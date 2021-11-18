@@ -2,7 +2,7 @@ import json
 from flask import Flask, request
 from summarizer import Summarizer
 from language_identifier import LanguageIdentifier
-from exceptions import LanguageIdentificationError
+from exceptions import *
 
 
 app = Flask(__name__)
@@ -30,19 +30,22 @@ def predict():
     return json.dumps(response), 200
 
 @app.errorhandler(LanguageIdentificationError)
-def handle_language_error(err):
+@app.errorhandler(ModelConfigLoadError)
+@app.errorhandler(TokenizerConfigLoadError)
+@app.errorhandler(InvalidModelError)
+def handle_custom_error(err):
 
     response = {
         'error': {
             'type': err.name,
-            'message': err.description
+            'message': err.message
         },
         'success': False,
     }
     return json.dumps(response), err.status_code
 
 @app.errorhandler(TypeError)
-def handle_type_error(err):
+def handle_form_type_error(err):
 
     response = {
         'error': {

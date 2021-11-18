@@ -3,7 +3,7 @@ Repository for a personal which serves a containarized text summarization applic
 
 **Contents**:
 1. [Development Environment](#development-environment)
-2. [Building the server with docker](#building-the-server-with-docker)
+2. [Building the Server with Docker](#building-the-server-with-docker)
 
 ## **Recreate Development Environment (OPTIONAL)**
 
@@ -36,7 +36,7 @@ Note: Poetry will always work isolated from the global Python installation by cr
 
 `poetry shell`
 
-## **Building the server with Docker**
+## **Building the Server with Docker**
 
 To build the server with docker, navigate to the server directory and build the docker image with:
 
