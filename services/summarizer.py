@@ -1,6 +1,6 @@
 import re
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
-from .exceptions import ModelNotFoundError
+from errors import ModelNotFoundError
 
 
 class Summarizer:

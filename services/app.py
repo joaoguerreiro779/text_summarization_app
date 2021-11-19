@@ -1,8 +1,8 @@
 import json
 from flask import Flask, request
-from .summarizer import Summarizer
-from .language_identifier import LanguageIdentifier
-from .exceptions import *
+from summarizer import Summarizer
+from language_identifier import LanguageIdentifier
+from errors import *
 
 
 app = Flask(__name__)
@@ -39,8 +39,9 @@ def handle_custom_error(err):
             'message': err.message
         },
         'success': False,
+        'status_code': err.status_code
     }
-    return json.dumps(response), err.status_code
+    return json.dumps(response)
 
 @app.errorhandler(TypeError)
 def handle_form_type_error(err):
@@ -51,8 +52,9 @@ def handle_form_type_error(err):
             'message': str(err)
         },
         'success': False,
+        'status_code': 400
     }
-    return json.dumps(response), 400
+    return json.dumps(response)
 
 @app.errorhandler(Exception)
 def handle_unexpected_error(err):
@@ -63,8 +65,9 @@ def handle_unexpected_error(err):
             'message': str(err)
         },
         'success': False,
+        'status_code': 500
     }
-    return json.dumps(response), 500
+    return json.dumps(response)
 
 if __name__=='__main__':
     app.run(host='0.0.0.0', port='3000')

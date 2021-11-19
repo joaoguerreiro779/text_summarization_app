@@ -13,7 +13,7 @@ class LanguageIdentifier(ABC):
                 Detect the language of an input text.
     """
 
-    def get_language(self, query_text: str)-> Tuple[str,bool]:
+    def get_language(self, query_text: str)-> Tuple[str,float]:
 
         '''
             Get the language of an input text.
@@ -23,6 +23,7 @@ class LanguageIdentifier(ABC):
 
                 Returns:
                         result.language (str): The language code of the text.
+                        result.probability (str): The probability output of the model.
         '''
 
         model = gcld3.NNetLanguageIdentifier(min_num_bytes=0, max_num_bytes=1000)

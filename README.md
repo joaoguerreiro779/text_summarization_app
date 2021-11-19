@@ -4,6 +4,9 @@ Repository for a personal which serves a containarized text summarization applic
 **Contents**:
 1. [Development Environment](#development-environment)
 2. [Building the Server with Docker](#building-the-server-with-docker)
+3. [Dataset](#dataset)
+4. [Evaluation Metrics](#evaluation-metrics)
+5. [Next Steps](#next-steps)
 
 ## **Recreate Development Environment (OPTIONAL)**
 
@@ -44,7 +47,11 @@ To build the server with docker, navigate to the server directory and build the 
 
 Then run this image on a container exposing host port 5000 to container port 3000
 
+<<<<<<< HEAD
 `docker run -p 5000:3000 text_summarization_server`
+=======
+`docker run -p 5000:3000 coachhub_challenge_server`
+>>>>>>> 2a61fa6... fixes testing issue
 
 ## **Dataset source**
 
@@ -57,13 +64,26 @@ BBC News summary:
 ROUGE - Recall Oriented Understudy for Gisting Evaluation, measures recall that is how much the words (and/or n-grams) in the machine generated summaries appear in the machine generated summaries.
 
 BERT score
+<<<<<<< HEAD
 Ideally, with GPU enabled it would be interesting to explore  text summarization evaluation. Having said this, the truth and summarized text would have to be of the exact same number of sentences which makes it impractical. You can read more about it in the following [paper](https://arxiv.org/pdf/1904.09675.pdf)
  or check the project's [repository](https://github.com/Tiiiger/bert_score).
+=======
+Ideally, with GPU enabled it would be interesting to explore  text summarization evaluation. Having said this, the truth and summarized text would have to be of the exact same number of sentences which makes it impractical.
+
+[PAPER](https://arxiv.org/pdf/1904.09675.pdf)
+[CODE](https://github.com/Tiiiger/bert_score)
+>>>>>>> 2a61fa6... fixes testing issue
 
 ## **Next steps**
 
 - Include option to add inputs as files
 - Migrate to uwsgi
+<<<<<<< HEAD
 - Support GPU capabilities
 - Add linting as a cicd pipeline step
 - Investigate options to prevent server overload.
+=======
+- Write docstrings
+- Support GPU capabilities
+- Add linting as a cicd step
+>>>>>>> 2a61fa6... fixes testing issue
