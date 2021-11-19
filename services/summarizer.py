@@ -1,6 +1,6 @@
+import re
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
-from config import Config
-from exceptions import ModelConfigLoadError, TokenizerConfigLoadError, InvalidModelError
+from .exceptions import ModelNotFoundError
 
 
 class Summarizer:
@@ -20,11 +20,9 @@ class Summarizer:
         """
         try:
             print("Downloading a model")
-            self.model = AutoModelForSeq2SeqLM.from_pretrained(Config.MODEL_NAME)
-        except OSError as error:
-            raise ModelConfigLoadError(message=str(error)) from error
+            self.model = AutoModelForSeq2SeqLM.from_pretrained("facebook/bart-large-cnn")
         except ValueError as error:
-            raise InvalidModelError(message=str(error)) from error
+            raise ModelNotFoundError(message=str(error)) from error
 
     def summarize(self, query_text: str) -> str:
 
@@ -38,14 +36,14 @@ class Summarizer:
                         result (str): The summarized text
         '''
         try:
-            tokenizer = AutoTokenizer.from_pretrained(Config.TOKENIZER_NAME)
-        except OSError as error:
-            raise TokenizerConfigLoadError(message=str(error)) from error
+            tokenizer = AutoTokenizer.from_pretrained("philschmid/bart-large-cnn-samsum")
+        except ValueError as error:
+            raise ModelNotFoundError(message=str(error)) from error
 
-        inputs = tokenizer(query_text, return_tensors=self.model.framework)
+        inputs = tokenizer(str(query_text), return_tensors=self.model.framework)
         prediction = self.model.generate(**inputs)
         decoded = tokenizer.batch_decode(prediction)
 
-        result = decoded[0].replace('</s>','').replace('<s>','')
+        result = re.sub(r'(\W^<)?\<[^>]*\>(\W^>)?', '', decoded[0])
 
         return result

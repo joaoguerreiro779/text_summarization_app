@@ -26,6 +26,6 @@ class LanguageIdentifier(ABC):
         '''
 
         model = gcld3.NNetLanguageIdentifier(min_num_bytes=0, max_num_bytes=1000)
-        result = model.FindLanguage(text=query_text)
+        result = model.FindLanguage(text=str(query_text))
 
-        return result.language, result.is_reliable
+        return result.language, result.probability

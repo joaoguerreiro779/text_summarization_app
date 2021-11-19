@@ -1,8 +1,8 @@
 import json
 from flask import Flask, request
-from summarizer import Summarizer
-from language_identifier import LanguageIdentifier
-from exceptions import *
+from .summarizer import Summarizer
+from .language_identifier import LanguageIdentifier
+from .exceptions import *
 
 
 app = Flask(__name__)
@@ -15,9 +15,9 @@ def predict():
     if not isinstance(req,str):
         raise TypeError('Input type is not string')
 
-    lang_code, is_reliable = LanguageIdentifier().get_language(req)
+    lang_code, prob = LanguageIdentifier().get_language(req)
 
-    if lang_code=='en' and is_reliable:
+    if lang_code=='en' and prob>0.98:
         result = Summarizer().summarize(req)
     else:
         raise LanguageIdentificationError()
@@ -30,9 +30,7 @@ def predict():
     return json.dumps(response), 200
 
 @app.errorhandler(LanguageIdentificationError)
-@app.errorhandler(ModelConfigLoadError)
-@app.errorhandler(TokenizerConfigLoadError)
-@app.errorhandler(InvalidModelError)
+@app.errorhandler(ModelNotFoundError)
 def handle_custom_error(err):
 
     response = {
@@ -49,7 +47,7 @@ def handle_form_type_error(err):
 
     response = {
         'error': {
-            'type': 'Type Error',
+            'type': 'TypeError',
             'message': str(err)
         },
         'success': False,
