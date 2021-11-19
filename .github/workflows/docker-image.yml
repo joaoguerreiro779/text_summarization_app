@@ -26,3 +26,5 @@ jobs:
       run: pytest -v -s -k unit_test.py
     - name: Run api tests
       run: pytest -v -s -k api_test.py
+    - name: Run sample script
+      run: python run_samples.py
