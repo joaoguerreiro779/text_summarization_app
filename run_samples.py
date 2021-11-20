@@ -1,3 +1,12 @@
+'''
+Make some sample requests to the summarization service.
+
+    Methods
+        ------
+            get_rouge_score
+                Summarize some BBC News articles
+                and compute their rouge-1, rouge-2 and rouge-l scores.
+'''
 import json
 from glob import glob
 import requests
@@ -27,19 +36,25 @@ def get_rouge_score():
 
     for i in news[:20]:
         with open(i, 'r') as truth_file:
-            req = requests.post(url, json = {'text': truth_file.read()}).json()
+            truth = truth_file.read()
+            req = requests.post(url, json = {'text': truth}).json()
             summary = req['summary']
 
-            scores = Rouge().get_scores(truth_file.read(), summary, avg=True)
+            scores = Rouge().get_scores(truth, summary, avg=True)
 
-            print("Original")
-            print(truth_file.read())
-            print("#########################################################################")
-            print("Summary")
+            print("ORIGINAL TEXT")
+            print("")
+            print(truth)
+            print("-------------------------------------------------------------------------")
+            print("SUMMARY")
+            print("")
             print(summary)
-            print("#########################################################################")
-            print("Rouge metrics")
+            print("-------------------------------------------------------------------------")
+            print("ROUGE METRICS")
+            print("")
             print(scores)
+            print("#########################################################################")
+            print("")
 
             r1_recall_list.append(scores['rouge-1']['r'])
             r1_precision_list.append(scores['rouge-1']['p'])
@@ -53,6 +68,8 @@ def get_rouge_score():
             rl_precision_list.append(scores['rouge-l']['p'])
             rl_f1_list.append(scores['rouge-l']['f'])
 
+    print("ROUGE METRICS - AVERAGE OF ALL TEXTS")
+    print("")
     print("Mean Rouge-N1 Recall: " + str(sum(r1_recall_list)/len(r1_recall_list)))
     print("Mean Rouge-N1 Precision: " + str(sum(r1_precision_list)/len(r1_precision_list)))
     print("Mean Rouge-N1 F1: " + str(sum(r1_f1_list)/len(r1_f1_list)))
@@ -62,6 +79,7 @@ def get_rouge_score():
     print("Mean Rouge-L Recall: " + str(sum(rl_recall_list)/len(r1_f1_list)))
     print("Mean Rouge-L Precision: " + str(sum(rl_precision_list)/len(r1_f1_list)))
     print("Mean Rouge-L F1: " + str(sum(rl_f1_list)/len(r1_f1_list)))
+
 
 
 if __name__== "__main__":

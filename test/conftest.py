@@ -1,7 +1,20 @@
+'''
+Pytest config for setting environment variables.
+
+    Methods
+        -------
+            pytest_configure
+                Sets the configuration for pytest.
+
+'''
+
 import pytest
 
 
+
 def pytest_configure():
+
+    '''Sets the configuration for pytest.'''
 
     with open('test/resources/Edge Cases/english_text_1.txt','r') as _:
         english_example = _.read()

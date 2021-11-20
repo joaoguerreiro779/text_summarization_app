@@ -1,3 +1,22 @@
+'''
+The language identifier module which contains the class to
+define language identification objects
+
+    Classes
+        -------
+            Summarizer
+                A class to create a text summarizer.
+
+                Methods
+                    -------
+                        def __init__(self):
+                            Constructor for the summarizer class.
+
+                            summarize(query_text: str)-> str:
+                                Summarize an input text.
+'''
+
+
 import re
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 from errors import ModelNotFoundError
@@ -9,14 +28,14 @@ class Summarizer:
         A class to create a text summarizer.
 
         Methods
-        -------
+            -------
             summarize(query_text: str):
                 Summarize an input text.
     """
 
     def __init__(self):
         """
-        Construct all the necessary attributes for the summarizer object.
+        Constructor for the summarizer class.
         """
         try:
             print("Downloading a model")

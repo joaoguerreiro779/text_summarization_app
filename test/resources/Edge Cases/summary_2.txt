@@ -1,1 +1,1 @@
-The Hugging Face Deep Learning Container can be used to train a Transformers model on Amazon SageMaker. The documentation for the project is available at: http://huggingface.co/blog/the-partnership-amazon-sagemaker-and-huging-face.
+BART is a transformer encoder-encoder (seq2seq) model with a bidirectional encoder and an autoregressive decoder. BART is pre-trained by corrupting text with an arbitrary noising function, and learning a model to reconstruct the original text.
