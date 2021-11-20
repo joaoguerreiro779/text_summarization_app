@@ -27,7 +27,7 @@ def get_rouge_score():
 
     for i in news[:20]:
         with open(i, 'r') as truth_file:
-            req = requests.post(url, json = json.dumps({'text': truth_file.read()})).json()
+            req = requests.post(url, json = {'text': truth_file.read()}).json()
             summary = req['summary']
 
             scores = Rouge().get_scores(truth_file.read(), summary, avg=True)

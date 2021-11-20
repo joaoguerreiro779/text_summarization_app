@@ -5,7 +5,8 @@ import pytest
 data = pytest.env_var
 
 @pytest.mark.parametrize("test_input,expected",
-[({'text': 5}, 400),({'text': '5'}, 400),
+[({'text': 5}, 400),
+({'text': '5'}, 400),
 ({'text': data['ENGLISH_TEXT_1']}, 200),
 ({'text': data['SPANISH_TEXT_1']}, 400),
 ({'text': data['GERMAN_ENGLISH']}, 400)])
@@ -14,8 +15,7 @@ def test_response_codes(test_input, expected):
     assert int(json.loads(response)['status_code']) == expected
 
 @pytest.mark.parametrize("test_input,expected",
-[({'wrong_key': 5}, 'TypeError'),
-({'text': 5}, 'TypeError'),
+[({'text': 5}, 'TypeError'),
 ({'text': '5'}, 'LanguageIdentificationError'),
 ({'text': data['SPANISH_TEXT_1']}, 'LanguageIdentificationError'),
 ({'text': data['GERMAN_ENGLISH']}, 'LanguageIdentificationError')])

@@ -10,10 +10,13 @@ app = Flask(__name__)
 @app.route('/summarize', methods=['POST'])
 def predict():
 
-    req = request.get_json()['text']
+    try:
+        req = request.get_json()['text']
+    except:
+        raise TypeError("Error in request format. Ensure request is of the form text:<query_text>")
 
     if not isinstance(req,str):
-        raise TypeError('Input type is not string')
+        raise TypeError("Request input type is not string.")
 
     lang_code, prob = LanguageIdentifier().get_language(req)
 
@@ -25,9 +28,10 @@ def predict():
     response = {
        'summary': result,
         'success': True,
+        'status_code': 200
     }
 
-    return json.dumps(response), 200
+    return json.dumps(response)
 
 @app.errorhandler(LanguageIdentificationError)
 @app.errorhandler(ModelNotFoundError)
