@@ -1,5 +1,5 @@
 # Text summarization app
-Repository for a personal project which serves a containarized text summarization application and implements a CI CD pipeline with linting and testing. The idea is to slowly familiarize myself with MLOps practices and client/server architectures.
+Repository for a personal project which serves a containarized text summarization application and implements a CI CD pipeline with linting and testing.
 
 **Contents**:
 1. [Development Environment](#development-environment)
