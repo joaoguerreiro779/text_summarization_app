@@ -1,4 +1,4 @@
-'''
+"""
 The language identifier module which contains the class to
 define language identification objects
 
@@ -14,7 +14,7 @@ define language identification objects
 
                             summarize(query_text: str)-> str:
                                 Summarize an input text.
-'''
+"""
 
 
 import re
@@ -25,12 +25,12 @@ from errors import ModelNotFoundError
 class Summarizer:
 
     """
-        A class to create a text summarizer.
+    A class to create a text summarizer.
 
-        Methods
-            -------
-            summarize(query_text: str):
-                Summarize an input text.
+    Methods
+        -------
+        summarize(query_text: str):
+            Summarize an input text.
     """
 
     def __init__(self):
@@ -39,30 +39,34 @@ class Summarizer:
         """
         try:
             print("Downloading a model")
-            self.model = AutoModelForSeq2SeqLM.from_pretrained("facebook/bart-large-cnn")
+            self.model = AutoModelForSeq2SeqLM.from_pretrained(
+                "facebook/bart-large-cnn"
+            )
         except ValueError as error:
             raise ModelNotFoundError(message=str(error)) from error
 
     def summarize(self, query_text: str) -> str:
 
-        '''
-            Summarize an input text.
+        """
+        Summarize an input text.
 
-                Parameters:
-                        query_text (str): Input text to be summarized
+            Parameters:
+                    query_text (str): Input text to be summarized
 
-                Returns:
-                        result (str): The summarized text
-        '''
+            Returns:
+                    result (str): The summarized text
+        """
         try:
-            tokenizer = AutoTokenizer.from_pretrained("philschmid/bart-large-cnn-samsum")
+            tokenizer = AutoTokenizer.from_pretrained(
+                "philschmid/bart-large-cnn-samsum"
+            )
         except ValueError as error:
             raise ModelNotFoundError(message=str(error)) from error
 
-        inputs = tokenizer(str(query_text), return_tensors=self.model.framework)
+        inputs = tokenizer(query_text, return_tensors=self.model.framework)
         prediction = self.model.generate(**inputs)
         decoded = tokenizer.batch_decode(prediction)
 
-        result = re.sub(r'(\W^<)?\<[^>]*\>(\W^>)?', '', decoded[0])
+        result = re.sub(r"(\W^<)?\<[^>]*\>(\W^>)?", "", decoded[0])
 
         return result

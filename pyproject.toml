@@ -14,7 +14,8 @@ rouge = "^1.0.1"
 
 
 [tool.poetry.dev-dependencies]
-pylint = "^2.11.1"
+flake8 = "^4.0.1"
+black = "^21.12b0"
 jupyterlab = "^3.2.3"
 jupyterlab-widgets = "^1.0.2"
 ipywidgets = "^7.6.5"
