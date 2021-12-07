@@ -1,5 +1,5 @@
 # Text summarization app
-Repository for a personal which serves a containarized text summarization application and implements a CI CD pipeline with linting and testing. The idea is to slowly familiarize myself with MLOps and client/server architectures by taking on these small projects.
+Repository for a personal project which serves a containarized text summarization application and implements a CI CD pipeline with linting and testing. The idea is to slowly familiarize myself with MLOps practices and client/server architectures.
 
 **Contents**:
 1. [Development Environment](#development-environment)
@@ -8,11 +8,11 @@ Repository for a personal which serves a containarized text summarization applic
 4. [Evaluation Metrics](#evaluation-metrics)
 5. [Next Steps](#next-steps)
 
-## **Recreate Development Environment (OPTIONAL)**
+## **Development Environment**
 
 In order to run through all the steps of this README you must make sure you have `Docker` working on your machine. 
 The stack used for this project was:
- - [Windows 10 host machine]
+ - Windows 10 host machine
  - [Windows Subsystem for Linux 2](https://docs.microsoft.com/en-us/windows/wsl/install)
  - [Docker Desktop](https://www.docker.com/products/docker-desktop)
  - [Ubuntu 18.06](https://www.microsoft.com/store/productId/9N9TNGVNDL3Q)
@@ -49,7 +49,7 @@ Then run this image on a container exposing host port 5000 to container port 300
 
 `docker run -p 5000:3000 coachhub_challenge_server`
 
-## **Dataset source**
+## **Dataset**
 
 BBC News summary:
 
@@ -63,6 +63,7 @@ BERT score
 Ideally, with GPU enabled it would be interesting to explore  text summarization evaluation. Having said this, the truth and summarized text would have to be of the exact same number of sentences which makes it impractical.
 
 [PAPER](https://arxiv.org/pdf/1904.09675.pdf)
+
 [CODE](https://github.com/Tiiiger/bert_score)
 
 ## **Next steps**
