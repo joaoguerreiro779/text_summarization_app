@@ -47,7 +47,7 @@ To build the server with docker, navigate to the server directory and build the 
 
 Then run this image on a container exposing host port 5000 to container port 3000
 
-`docker run -p 5000:3000 coachhub_challenge_server`
+`docker run -p 5000:3000 text_summarization_server`
 
 ## **Dataset**
 
